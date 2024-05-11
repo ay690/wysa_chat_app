@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from "react"
+import { SyntheticEvent, useEffect, useState } from "react"
 import { Nav, NavLinks, StyledApp } from "./styles"
 import { ThemeProvider } from "styled-components"
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
@@ -44,10 +44,11 @@ function App() {
     setSelectedTheme(theme)
   }, [theme, themeLoaded])
 
-  const logoutHandler = (e: SyntheticEvent) => {
+  const logoutHandler = (_e: SyntheticEvent) => {
     setToLocalStorage("login-state", false)
     navigate("/", { replace: true })
   }
+  
 
   return (
     <>

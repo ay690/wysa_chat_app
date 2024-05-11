@@ -70,8 +70,10 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
         const chat = {
           id: uuidv4(),
           image: reader.result as string,
+          // @ts-ignore
           type: ChatType.IMAGE,
         };
+        // @ts-ignore
         setChats((prev) => [...prev, chat]);
       };
       reader.readAsDataURL(file);
@@ -95,6 +97,7 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
               }}
             >
               {chat.type === ChatType.IMAGE ? (
+              
                 <img
                   src={chat.image}
                   alt="Uploaded"

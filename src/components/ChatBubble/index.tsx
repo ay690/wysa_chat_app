@@ -4,6 +4,7 @@ import { StyledChatBubble } from "./styles"
 export enum ChatType {
   USER = "sender",
   SYSTEM = "receiver",
+  IMAGE = "image",
 }
 
 export type IChat = {
@@ -11,6 +12,7 @@ export type IChat = {
   text: string
   type: ChatType
   isDefault?: boolean
+  image?: string;
 }
 
 type Props = {

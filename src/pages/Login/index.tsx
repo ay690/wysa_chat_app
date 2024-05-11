@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react"
+import { FormEvent } from "react"
 import { getFromLocalStorage, setToLocalStorage } from "../../helpers/storage"
 import { Navigate, useNavigate } from "react-router-dom"
 import { FormInput, LogoContainer, StyledLogin } from "./styles"
@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault()
 
     // Storing the form data to send to the server
-    const formData = new FormData(e.target as HTMLFormElement)
+    // const formData = new FormData(e.target as HTMLFormElement)
 
     setToLocalStorage("login-state", true)
     navigate("/", { replace: true })
