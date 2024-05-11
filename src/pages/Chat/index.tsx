@@ -22,6 +22,7 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
 
   const inputRef = createRef<HTMLInputElement>();
   const chatsEndRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Getting login state from local storage
   const loggedIn = getFromLocalStorage("login-state");
@@ -55,6 +56,28 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
     setChats((prev) => [...prev, chat]);
   };
 
+  const picUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Trigger file input click event
+    }
+  };
+
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const chat = {
+          id: uuidv4(),
+          image: reader.result as string,
+          type: ChatType.IMAGE,
+        };
+        setChats((prev) => [...prev, chat]);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <StyledChat>
       {!loggedIn && <Navigate to="/" replace />}
@@ -71,7 +94,15 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
                   : TRANSITION_DELAY,
               }}
             >
-              <ChatBubble text={chat.text} type={chat.type} />
+              {chat.type === ChatType.IMAGE ? (
+                <img
+                  src={chat.image}
+                  alt="Uploaded"
+                  style={{ maxWidth: "25%", alignSelf: "flex-end" }}
+                />
+              ) : (
+                <ChatBubble text={chat.text} type={chat.type} />
+              )}
             </CSSTransition>
           ))}
         </>
@@ -84,13 +115,24 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
           placeholder="Ask something..."
           onKeyDown={(e) => e.key !== "Enter" || inputChatHandler()}
         />
-
+        <button onClick={() => picUpload()}>
+          <Icon src="/src/assets/paper-clip-svgrepo-com.svg" />
+        </button>
         <button onClick={() => inputChatHandler()}>
           <Icon src="/src/assets/send.svg" />
         </button>
       </ChatInput>
+      {/* Hidden file input for image upload */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={handleFileInputChange}
+      />
     </StyledChat>
   );
 };
 
 export default Chat;
+
