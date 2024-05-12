@@ -41,7 +41,7 @@ const ThemePicker: React.FC<Props> = ({ themeSetter }) => {
     <StyledThemePicker ref={divRef}>
       <button onClick={() => setIsOpen((prev) => !prev)}>
         Change Theme
-        <Icon src="/src/assets/chevron-down.svg" color="white" size="10px" />
+        <Icon src="assets/chevron-down.svg" color="white" size="10px" />
       </button>
       <Picker className={isOpen ? "visible" : ""}>
         <ul>

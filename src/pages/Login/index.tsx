@@ -21,7 +21,7 @@ const Login = () => {
     <StyledLogin>
       {loggedIn && <Navigate to="/" replace />}
       <LogoContainer>
-        <img src="/src/assets/logo.png" alt="Wysa Logo" />
+        <img src="assets/logo.png" alt="Wysa Logo" />
       </LogoContainer>
 
       <div className="seperator" />

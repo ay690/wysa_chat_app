@@ -119,10 +119,10 @@ const Chat: React.FC<Props> = ({ chatAnimationDelay }) => {
           onKeyDown={(e) => e.key !== "Enter" || inputChatHandler()}
         />
         <button onClick={() => picUpload()}>
-          <Icon src="/src/assets/paper-clip-svgrepo-com.svg" />
+          <Icon src="assets/clip.svg" />
         </button>
         <button onClick={() => inputChatHandler()}>
-          <Icon src="/src/assets/send.svg" />
+          <Icon src="assets/send.svg" />
         </button>
       </ChatInput>
       {/* Hidden file input for image upload */}
