@@ -10,7 +10,7 @@ Demo Link: https://wysa-chat-app.netlify.app/login
 
 <img src="./demo//login.png" />
 <img src="./demo//chatBubble.png" />
-<img src="./demo//themeChange.png.png" />
+<img src="./demo//themeChange.png" />
 
 
 
